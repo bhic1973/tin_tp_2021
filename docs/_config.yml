@@ -23,13 +23,14 @@ email: hicham.belkebir@usmba.ac.ma
 description: >- # this means to ignore newlines until "baseurl:"
   Cette page contient le descriptif des Travaux pratiques du traitement d'image au profit des etudiants de la filiere Genie systeme embarquee et informatique industrielle semestre 5.
 domain: bhic1973.github.io
-baseurl: "/tin_tp_2021" # the subpath of your site, e.g. /blog
-url: "https://bhic1973.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: bhic1973
 facebook_username: hicham belkebir
 
 # Build settings
 theme: minima
+markdown: kramdown
 plugins:
   - jekyll-feed
 # Exclude from processing.

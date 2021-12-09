@@ -1,4 +1,184 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-12-09T19:14:19+01:00</updated><id>/feed.xml</id><title type="html">Traitement d’image numerique</title><subtitle>Cette page contient le descriptif des Travaux pratiques du traitement d'image au profit des etudiants de la filiere Genie systeme embarquee et informatique industrielle semestre 5.</subtitle><entry><title type="html">Bien venu sur la page des travaux pratiques</title><link href="/jekyll/update/2021/12/09/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Bien venu sur la page des travaux pratiques" /><published>2021-12-09T00:00:00+01:00</published><updated>2021-12-09T00:00:00+01:00</updated><id>/jekyll/update/2021/12/09/welcome-to-jekyll</id><content type="html" xml:base="/jekyll/update/2021/12/09/welcome-to-jekyll.html">&lt;p&gt;Ces pages sont reserves aux travaux pratiques du traitement d’image numerique destinees pour les etudiants du semestre 5 de la filiere genie des systemes embarques et informatique industrielle.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-12-09T23:53:17+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Traitement d’image numerique</title><subtitle>Cette page contient le descriptif des Travaux pratiques du traitement d'image au profit des etudiants de la filiere Genie systeme embarquee et informatique industrielle semestre 5.</subtitle><entry><title type="html">Enonce TP01</title><link href="http://localhost:4000/jekyll/update/2021/12/09/TP01.html" rel="alternate" type="text/html" title="Enonce TP01" /><published>2021-12-09T00:00:00+01:00</published><updated>2021-12-09T00:00:00+01:00</updated><id>http://localhost:4000/jekyll/update/2021/12/09/TP01</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2021/12/09/TP01.html">&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+  &lt;/script&gt;
+
+&lt;style type=&quot;text/css&quot;&gt;
+.divcls {
+	padding: 1% 5% 1% 5%;
+	width: 100%;
+	background-color: #333e;
+}
+
+.headercls {
+	color: white;
+	text-align: center;
+	font-family: sans-serif;
+}
+&lt;/style&gt;
+
+&lt;div class=&quot;divcls&quot;&gt;
+&lt;h1 class=&quot;headercls&quot;&gt; TP de Traitement d'Image Numerique &lt;/h1&gt;
+&lt;h3 class=&quot;headercls&quot;&gt; Seance 01 &lt;/h3&gt;
+&lt;h2 class=&quot;headercls&quot;&gt; Reconstruction d'images RGB a partir de données brutes&lt;/h2&gt;
+&lt;h5 class=&quot;headercls&quot;&gt; Préparé et encadré par: Pr. Hicham Belkebir&lt;/h5&gt;
+&lt;h6 class=&quot;headercls&quot;&gt; Annee universitaire: 2021-2022&lt;/h6&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;pi-camera&quot;&gt;&lt;strong&gt;Pi Camera&lt;/strong&gt;&lt;/h1&gt;
+
+&lt;p&gt;Please check this link for more details about how to use the raspberry pi camera module:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.raspberrypi.com/documentation/accessories/camera.html&quot;&gt;Pi camera documentation&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://libcamera.org/&quot;&gt;Libcamera website&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://picamera.readthedocs.io/en/release-1.13/index.html&quot;&gt;Picamera Python module documentation&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;stilling-raw-image-using-the-remote-raspberry-pi-camera&quot;&gt;Stilling raw image using the remote Raspberry Pi Camera:&lt;/h2&gt;
+
+&lt;h3 id=&quot;1-tester-la-connexion-avec-la-raspberry-distante&quot;&gt;1. Tester la connexion avec la raspberry distante.&lt;/h3&gt;
+
+&lt;div class=&quot;language-julia highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;k&quot;&gt;begin&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;ruser&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;pi&quot;&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;luser&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;belkebir&quot;&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;rhost&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;192.168.1.2&quot;&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;lhost&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;192.168.1.16&quot;&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;PWD&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pwd&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;()&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;RPWD&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;/home/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;ruser&quot;&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;r_fname&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;data.txt&quot;&lt;/span&gt;
+		&lt;span class=&quot;c&quot;&gt;# script python pour tester la connexion avec la raspberry pi.&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;remote_cmd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+			&lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;\&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;
+			touch &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;r_fname
+			printf &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;The remote machine is: \&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;(uname -m)&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n\&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;;
+			python -c &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;\&quot;\&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;
+			import random as rnd
+			uarr = [rnd.randint(0,255) for _ in range(10)];
+			with open('&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;r_fname','w') as fd:
+				for val in uarr:
+					print(val)
+					fd.write(f'{val}, ')
+
+			fd.close()
+			&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;\&quot;\&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;;
+			exit;
+			&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;\&quot;\&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;
+
+		# telechrger le fichier texte creer sure la raspberry pi
+		# et afficher son contenu dans le terminale
+		rget_cmd = `scp -r &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;ruser\@&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;rhost\:&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;RPWD/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;r_fname &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;luser\@&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;lhost\:&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;PWD\;cat\ &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;r_fname\;printf\ done.`
+
+		with_terminal() do
+			run(`ssh &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;ruser\@&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;rhost &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;remote_cmd`)
+			run(rget_cmd)
+		end;
+	end
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;2-capturing-to-a-file&quot;&gt;2. Capturing to a file&lt;/h3&gt;
+
+&lt;div class=&quot;language-julia highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Capturing procedure on remote machine.&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;cap01&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;cap01.jpg&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;r_capture&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+		&lt;span class=&quot;o&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;\&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;
+		printf &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Capturing image by using Python PiCamera module on remote machine&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n\&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;;
+		python3 -c &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;\&quot;\&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;
+		from time import sleep
+		from picamera import PiCamera
+
+		with PiCamera() as remote_cam:
+			remote_cam.resolution = (1024, 768)
+			rem_cam.start_preview()
+			# Camera warm-up time
+			sleep(2)
+			camera.capture('cap01.jpg')
+		&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;\&quot;\&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;;
+		exit;
+		&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;\&quot;\&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;
+	# telechrger le fichier texte creer sure la raspberry pi et afficher son contenu dans le terminale
+	rget_cmd1 = `scp -r &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;ruser\@&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;rhost\:&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;RPWD/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;cap01 &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;luser\@&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;lhost\:&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;PWD\;printf\ done.`
+	with_terminal() do
+		run(`ssh &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;ruser\@&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;rhost &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;r_capture`)
+		run(rget_cmd1)
+	end;
+end
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;3-loading-and-displaying-the-image-in-pluto-notebook&quot;&gt;3. Loading and displaying the image in Pluto notebook&lt;/h3&gt;
+
+&lt;div class=&quot;language-julia highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;begin&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;cap01&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cap01&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# Displaying some properties of the loaded image&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;with_terminal&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;The size of the captured image is: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;(size(cap01))&quot;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;The type of data structure of the image is: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;(typeof(cap01))&quot;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;The pixel coding in the stilling image is: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;(eltype(cap01))&quot;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;The average brightness in the image is: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;(Mean(cap01))&quot;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;The standard deviation in the image is: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;(Std(cap01))&quot;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
+
+	&lt;span class=&quot;c&quot;&gt;# Mean function definition&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt; Mean&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;im&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;AbstractMatrix&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Float64&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;im_size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eltype&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;im&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RGB&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reduce&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;im&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reduce&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;im&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;))&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;channelview&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;im&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;])&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;im_size&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;# Standard deviation function definition&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt; Std&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;im&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;AbstractMatrix&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Float64&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;im_size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eltype&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;im&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RGB&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reduce&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;im&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reduce&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;im&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;))&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sqrt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;channelview&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;im&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;])&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.^&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Mean&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;im&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;^&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;im_size&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;4-todo&quot;&gt;4. TODO&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;1. Define and execute a function that calculates and displays the histogram or the normalized, or accumulated one.&lt;/strong&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;strong&gt;2. Define and execute a function that performs histogram equalization.&lt;/strong&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;strong&gt;3. Define a function that displays every channel of the image with its equivalent color (Red channel with red maps, Green one with green maps, and so on).&lt;/strong&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;strong&gt;4. Define a function that calculates the amplitude and phase spectrum of an image and displays them.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;5-homework&quot;&gt;5. HomeWork:&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;1. By using this python script still an image in uncoded &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YUV&lt;/code&gt; mode.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;time&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;picamera&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;picamera&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PiCamera&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;camera&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;camera&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;resolution&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;300&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;300&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;camera&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start_preview&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;camera&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;capture&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'image.data'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'yuv'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The specific YUV format used is YUV420 (planar). This means that the Y (luminance) values occur first in the resulting data and have full resolution (one 1-byte Y value for each pixel in the image). The Y values are followed by the U (chrominance) values, and finally the V (chrominance) values. The UV values have one quarter the resolution of the Y components (4 1-byte Y values in a square for each 1-byte U and 1-byte V value). This is illustrated in the diagram below:&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://picamera.readthedocs.io/en/release-1.13/_images/yuv420.svg&quot; alt=&quot;Yuv coding&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It is also important to note that when outputting to unencoded formats, the camera rounds the requested resolution. The horizontal resolution is rounded up to the nearest multiple of 32 pixels, while the vertical resolution is rounded up to the nearest multiple of 16 pixels. For example, if the requested resolution is 100x100, the capture will actually contain 128x112 pixels worth of data, but pixels beyond 100x100 will be uninitialized.&lt;/p&gt;
+
+&lt;p&gt;Given that the YUV420 format contains 1.5 bytes worth of data for each pixel (a 1-byte Y value for each pixel, and 1-byte U and V values for every 4 pixels), and taking into account the resolution rounding, the size of a 100x100 YUV capture will be:&lt;/p&gt;
+
+\[\begin{equation}
+\begin{array}{rl}
+128.0 &amp;amp; \text{100 rounded up to nearest multiple of 32} \\
+\times \quad 112.0 &amp;amp; \text{100 rounded up to nearest multiple of 16} \\
+\times \qquad 1.5 &amp;amp; \text{bytes of data per pixel in YUV420 format} \\
+\hline
+21504.0 &amp;amp; \text{bytes total}\\
+\end{array}
+\end{equation}\]
+
+&lt;p&gt;The first 14336 bytes of the data (128*112) will be Y values, the next 3584 bytes (128 \times 112 \div 4) will be U values, and the final 3584 bytes will be the V values.&lt;/p&gt;
+
+&lt;h4 id=&quot;todo&quot;&gt;TODO:&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;write a Julia program that recovers the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RGB&lt;/code&gt; data from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YUV&lt;/code&gt; mode and displays the RGB image.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"></summary></entry><entry><title type="html">Bien venu</title><link href="http://localhost:4000/jekyll/update/2021/12/09/bien-venu.html" rel="alternate" type="text/html" title="Bien venu" /><published>2021-12-09T00:00:00+01:00</published><updated>2021-12-09T00:00:00+01:00</updated><id>http://localhost:4000/jekyll/update/2021/12/09/bien-venu</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2021/12/09/bien-venu.html">&lt;p&gt;Ces pages sont reserves aux travaux pratiques du traitement d’image numerique destinees pour les etudiants du semestre 5 de la filiere genie des systemes embarques et informatique industrielle.&lt;/p&gt;
 
 &lt;p&gt;Le TP se deroule en deux seances et vise a familiariser l’etudiant a manipuler le module camera d’un systeme embarquee en bas-niveau.&lt;/p&gt;
 
@@ -9,5 +189,4 @@
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://libcamera.org&quot;&gt;Libcamera application&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://picamera.readthedocs.io/en/release-1.13/index.html&quot;&gt;Picamera module&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html">Ces pages sont reserves aux travaux pratiques du traitement d’image numerique destinees pour les etudiants du semestre 5 de la filiere genie des systemes embarques et informatique industrielle. Le TP se deroule en deux seances et vise a familiariser l’etudiant a manipuler le module camera d’un systeme embarquee en bas-niveau. L’etudiant est amene au cours de ces seances a manipuler des scripts Bash, Python et ecrire des codes en Julia pour venir a bout du travail demande. Les liens ci-apres fournissent toute l’aide necessaire au bon accomplissement des objectifs de ce TP: Libcamera application Picamera module</summary></entry><entry><title type="html">Welcome To Jekyll</title><link href="/2021/12/08/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome To Jekyll" /><published>2021-12-08T00:00:00+01:00</published><updated>2021-12-08T00:00:00+01:00</updated><id>/2021/12/08/welcome-to-jekyll</id><content type="html" xml:base="/2021/12/08/welcome-to-jekyll.html">&lt;p&gt;&amp;lt;input type=”date”, value=”2021-12-09”&amp;gt;
-Bien Venu dan la page officielle des travaux pratiques de traitement d’image&lt;/p&gt;</content><author><name></name></author><summary type="html">&amp;lt;input type=”date”, value=”2021-12-09”&amp;gt; Bien Venu dan la page officielle des travaux pratiques de traitement d’image</summary></entry></feed>
+&lt;/ul&gt;</content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html">Ces pages sont reserves aux travaux pratiques du traitement d’image numerique destinees pour les etudiants du semestre 5 de la filiere genie des systemes embarques et informatique industrielle. Le TP se deroule en deux seances et vise a familiariser l’etudiant a manipuler le module camera d’un systeme embarquee en bas-niveau. L’etudiant est amene au cours de ces seances a manipuler des scripts Bash, Python et ecrire des codes en Julia pour venir a bout du travail demande. Les liens ci-apres fournissent toute l’aide necessaire au bon accomplissement des objectifs de ce TP: Libcamera application Picamera module</summary></entry></feed>

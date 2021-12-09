@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Enonce TP01 | Traitement d’image numerique</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Enonce TP01" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Cette page contient le descriptif des Travaux pratiques du traitement d’image au profit des etudiants de la filiere Genie systeme embarquee et informatique industrielle semestre 5." />
+<meta property="og:description" content="Cette page contient le descriptif des Travaux pratiques du traitement d’image au profit des etudiants de la filiere Genie systeme embarquee et informatique industrielle semestre 5." />
+<link rel="canonical" href="http://localhost:4000/jekyll/update/2021/12/09/TP01.html" />
+<meta property="og:url" content="http://localhost:4000/jekyll/update/2021/12/09/TP01.html" />
+<meta property="og:site_name" content="Traitement d’image numerique" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-12-09T00:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Enonce TP01" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","url":"http://localhost:4000/jekyll/update/2021/12/09/TP01.html","datePublished":"2021-12-09T00:00:00+01:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2021/12/09/TP01.html"},"headline":"Enonce TP01","description":"Cette page contient le descriptif des Travaux pratiques du traitement d’image au profit des etudiants de la filiere Genie systeme embarquee et informatique industrielle semestre 5.","dateModified":"2021-12-09T00:00:00+01:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Traitement d'image numerique" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Traitement d&#39;image numerique</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">A propos</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Enonce TP01</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-12-09T00:00:00+01:00" itemprop="datePublished">Dec 9, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+
+<style type="text/css">
+.divcls {
+	padding: 1% 5% 1% 5%;
+	width: 100%;
+	background-color: #333e;
+}
+
+.headercls {
+	color: white;
+	text-align: center;
+	font-family: sans-serif;
+}
+</style>
+
+<div class="divcls">
+<h1 class="headercls"> TP de Traitement d'Image Numerique </h1>
+<h3 class="headercls"> Seance 01 </h3>
+<h2 class="headercls"> Reconstruction d'images RGB a partir de données brutes</h2>
+<h5 class="headercls"> Préparé et encadré par: Pr. Hicham Belkebir</h5>
+<h6 class="headercls"> Annee universitaire: 2021-2022</h6>
+</div>
+
+<h1 id="pi-camera"><strong>Pi Camera</strong></h1>
+
+<p>Please check this link for more details about how to use the raspberry pi camera module:</p>
+
+<p><a href="https://www.raspberrypi.com/documentation/accessories/camera.html">Pi camera documentation</a></p>
+
+<p><a href="https://libcamera.org/">Libcamera website</a></p>
+
+<p><a href="https://picamera.readthedocs.io/en/release-1.13/index.html">Picamera Python module documentation</a></p>
+
+<h2 id="stilling-raw-image-using-the-remote-raspberry-pi-camera">Stilling raw image using the remote Raspberry Pi Camera:</h2>
+
+<h3 id="1-tester-la-connexion-avec-la-raspberry-distante">1. Tester la connexion avec la raspberry distante.</h3>
+
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	<span class="k">begin</span>
+		<span class="n">ruser</span> <span class="o">=</span> <span class="s">"pi"</span>
+		<span class="n">luser</span> <span class="o">=</span> <span class="s">"belkebir"</span>
+		<span class="n">rhost</span> <span class="o">=</span> <span class="s">"192.168.1.2"</span>
+		<span class="n">lhost</span> <span class="o">=</span> <span class="s">"192.168.1.16"</span>
+		<span class="n">PWD</span> <span class="o">=</span> <span class="n">pwd</span><span class="x">()</span>
+		<span class="n">RPWD</span> <span class="o">=</span> <span class="s">"/home/</span><span class="si">$</span><span class="s">ruser"</span>
+		<span class="n">r_fname</span> <span class="o">=</span> <span class="s">"data.txt"</span>
+		<span class="c"># script python pour tester la connexion avec la raspberry pi.</span>
+		<span class="n">remote_cmd</span> <span class="o">=</span>
+			<span class="o">\</span><span class="s">"</span><span class="se">\"\"</span><span class="s">
+			touch </span><span class="si">$</span><span class="s">r_fname
+			printf </span><span class="se">\"</span><span class="s">The remote machine is: \</span><span class="si">$</span><span class="s">(uname -m)</span><span class="se">\n\"</span><span class="s">;
+			python -c </span><span class="se">\"\"\"</span><span class="s">
+			import random as rnd
+			uarr = [rnd.randint(0,255) for _ in range(10)];
+			with open('</span><span class="si">$</span><span class="s">r_fname','w') as fd:
+				for val in uarr:
+					print(val)
+					fd.write(f'{val}, ')
+
+			fd.close()
+			</span><span class="se">\"\"\"</span><span class="s">;
+			exit;
+			</span><span class="se">\"\"\"</span><span class="s">
+
+		# telechrger le fichier texte creer sure la raspberry pi
+		# et afficher son contenu dans le terminale
+		rget_cmd = `scp -r </span><span class="si">$</span><span class="s">ruser\@</span><span class="si">$</span><span class="s">rhost\:</span><span class="si">$</span><span class="s">RPWD/</span><span class="si">$</span><span class="s">r_fname </span><span class="si">$</span><span class="s">luser\@</span><span class="si">$</span><span class="s">lhost\:</span><span class="si">$</span><span class="s">PWD\;cat\ </span><span class="si">$</span><span class="s">r_fname\;printf\ done.`
+
+		with_terminal() do
+			run(`ssh </span><span class="si">$</span><span class="s">ruser\@</span><span class="si">$</span><span class="s">rhost </span><span class="si">$</span><span class="s">remote_cmd`)
+			run(rget_cmd)
+		end;
+	end
+</span></code></pre></div></div>
+
+<h3 id="2-capturing-to-a-file">2. Capturing to a file</h3>
+
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Capturing procedure on remote machine.</span>
+<span class="n">cap01</span> <span class="o">=</span> <span class="s">"cap01.jpg"</span>
+<span class="n">r_capture</span> <span class="o">=</span>
+		<span class="o">\</span><span class="s">"</span><span class="se">\"\"</span><span class="s">
+		printf </span><span class="se">\"</span><span class="s">Capturing image by using Python PiCamera module on remote machine</span><span class="se">\n\"</span><span class="s">;
+		python3 -c </span><span class="se">\"\"\"</span><span class="s">
+		from time import sleep
+		from picamera import PiCamera
+
+		with PiCamera() as remote_cam:
+			remote_cam.resolution = (1024, 768)
+			rem_cam.start_preview()
+			# Camera warm-up time
+			sleep(2)
+			camera.capture('cap01.jpg')
+		</span><span class="se">\"\"\"</span><span class="s">;
+		exit;
+		</span><span class="se">\"\"\"</span><span class="s">
+	# telechrger le fichier texte creer sure la raspberry pi et afficher son contenu dans le terminale
+	rget_cmd1 = `scp -r </span><span class="si">$</span><span class="s">ruser\@</span><span class="si">$</span><span class="s">rhost\:</span><span class="si">$</span><span class="s">RPWD/</span><span class="si">$</span><span class="s">cap01 </span><span class="si">$</span><span class="s">luser\@</span><span class="si">$</span><span class="s">lhost\:</span><span class="si">$</span><span class="s">PWD\;printf\ done.`
+	with_terminal() do
+		run(`ssh </span><span class="si">$</span><span class="s">ruser\@</span><span class="si">$</span><span class="s">rhost </span><span class="si">$</span><span class="s">r_capture`)
+		run(rget_cmd1)
+	end;
+end
+</span></code></pre></div></div>
+
+<h3 id="3-loading-and-displaying-the-image-in-pluto-notebook">3. Loading and displaying the image in Pluto notebook</h3>
+
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">begin</span>
+	<span class="n">cap01</span> <span class="o">=</span> <span class="n">load</span><span class="x">(</span><span class="n">cap01</span><span class="x">)</span>
+	<span class="c"># Displaying some properties of the loaded image</span>
+	<span class="n">with_terminal</span><span class="x">()</span> <span class="k">do</span>
+		<span class="n">println</span><span class="x">(</span><span class="s">"The size of the captured image is: </span><span class="si">$</span><span class="s">(size(cap01))"</span><span class="x">)</span>
+		<span class="n">println</span><span class="x">(</span><span class="s">"The type of data structure of the image is: </span><span class="si">$</span><span class="s">(typeof(cap01))"</span><span class="x">)</span>
+		<span class="n">println</span><span class="x">(</span><span class="s">"The pixel coding in the stilling image is: </span><span class="si">$</span><span class="s">(eltype(cap01))"</span><span class="x">)</span>
+		<span class="n">println</span><span class="x">(</span><span class="s">"The average brightness in the image is: </span><span class="si">$</span><span class="s">(Mean(cap01))"</span><span class="x">)</span>
+		<span class="n">println</span><span class="x">(</span><span class="s">"The standard deviation in the image is: </span><span class="si">$</span><span class="s">(Std(cap01))"</span><span class="x">)</span>
+
+	<span class="c"># Mean function definition</span>
+	<span class="k">function</span><span class="nf"> Mean</span><span class="x">(</span><span class="nb">im</span><span class="o">::</span><span class="kt">AbstractMatrix</span><span class="x">)</span><span class="o">::</span><span class="kt">Float64</span>
+		<span class="n">im_size</span> <span class="o">=</span> <span class="n">eltype</span><span class="x">(</span><span class="nb">im</span><span class="x">)</span><span class="o">&lt;:</span><span class="n">RGB</span> <span class="o">?</span> <span class="n">reduce</span><span class="x">(</span><span class="o">*</span><span class="x">,</span><span class="n">size</span><span class="x">(</span><span class="nb">im</span><span class="x">);</span><span class="n">init</span><span class="o">=</span><span class="mi">3</span><span class="x">)</span> <span class="o">:</span> <span class="n">reduce</span><span class="x">(</span><span class="o">*</span><span class="x">,</span><span class="n">size</span><span class="x">(</span><span class="nb">im</span><span class="x">))</span>
+		<span class="k">return</span> <span class="n">sum</span><span class="x">(</span><span class="n">channelview</span><span class="x">(</span><span class="nb">im</span><span class="x">)[</span><span class="o">:</span><span class="x">])</span><span class="o">/</span><span class="n">im_size</span>
+	<span class="c"># Standard deviation function definition</span>
+	<span class="k">function</span><span class="nf"> Std</span><span class="x">(</span><span class="nb">im</span><span class="o">::</span><span class="kt">AbstractMatrix</span><span class="x">)</span><span class="o">::</span><span class="kt">Float64</span>
+		<span class="n">im_size</span> <span class="o">=</span> <span class="n">eltype</span><span class="x">(</span><span class="nb">im</span><span class="x">)</span><span class="o">&lt;:</span><span class="n">RGB</span> <span class="o">?</span> <span class="n">reduce</span><span class="x">(</span><span class="o">*</span><span class="x">,</span><span class="n">size</span><span class="x">(</span><span class="nb">im</span><span class="x">);</span><span class="n">init</span><span class="o">=</span><span class="mi">3</span><span class="x">)</span> <span class="o">:</span> <span class="n">reduce</span><span class="x">(</span><span class="o">*</span><span class="x">,</span><span class="n">size</span><span class="x">(</span><span class="nb">im</span><span class="x">))</span>
+		<span class="k">return</span> <span class="n">sqrt</span><span class="o">.</span><span class="x">(</span><span class="n">sum</span><span class="x">((</span><span class="n">channelview</span><span class="x">(</span><span class="nb">im</span><span class="x">)[</span><span class="o">:</span><span class="x">])</span><span class="o">.^</span><span class="mi">2</span> <span class="o">.-</span> <span class="n">Mean</span><span class="x">(</span><span class="nb">im</span><span class="x">)</span><span class="o">^</span><span class="mi">2</span><span class="x">)</span><span class="o">/</span><span class="n">im_size</span><span class="x">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="4-todo">4. TODO</h3>
+
+<blockquote>
+  <p><strong>1. Define and execute a function that calculates and displays the histogram or the normalized, or accumulated one.</strong></p>
+
+  <p><strong>2. Define and execute a function that performs histogram equalization.</strong></p>
+
+  <p><strong>3. Define a function that displays every channel of the image with its equivalent color (Red channel with red maps, Green one with green maps, and so on).</strong></p>
+
+  <p><strong>4. Define a function that calculates the amplitude and phase spectrum of an image and displays them.</strong></p>
+</blockquote>
+
+<h3 id="5-homework">5. HomeWork:</h3>
+
+<p><strong>1. By using this python script still an image in uncoded <code class="language-plaintext highlighter-rouge">YUV</code> mode.</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">picamera</span>
+
+<span class="k">with</span> <span class="n">picamera</span><span class="p">.</span><span class="n">PiCamera</span><span class="p">()</span> <span class="k">as</span> <span class="n">camera</span><span class="p">:</span>
+    <span class="n">camera</span><span class="p">.</span><span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+    <span class="n">camera</span><span class="p">.</span><span class="n">start_preview</span><span class="p">()</span>
+    <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">camera</span><span class="p">.</span><span class="n">capture</span><span class="p">(</span><span class="s">'image.data'</span><span class="p">,</span> <span class="s">'yuv'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>The specific YUV format used is YUV420 (planar). This means that the Y (luminance) values occur first in the resulting data and have full resolution (one 1-byte Y value for each pixel in the image). The Y values are followed by the U (chrominance) values, and finally the V (chrominance) values. The UV values have one quarter the resolution of the Y components (4 1-byte Y values in a square for each 1-byte U and 1-byte V value). This is illustrated in the diagram below:</p>
+</blockquote>
+
+<p><img src="https://picamera.readthedocs.io/en/release-1.13/_images/yuv420.svg" alt="Yuv coding" /></p>
+
+<p>It is also important to note that when outputting to unencoded formats, the camera rounds the requested resolution. The horizontal resolution is rounded up to the nearest multiple of 32 pixels, while the vertical resolution is rounded up to the nearest multiple of 16 pixels. For example, if the requested resolution is 100x100, the capture will actually contain 128x112 pixels worth of data, but pixels beyond 100x100 will be uninitialized.</p>
+
+<p>Given that the YUV420 format contains 1.5 bytes worth of data for each pixel (a 1-byte Y value for each pixel, and 1-byte U and V values for every 4 pixels), and taking into account the resolution rounding, the size of a 100x100 YUV capture will be:</p>
+
+\[\begin{equation}
+\begin{array}{rl}
+128.0 &amp; \text{100 rounded up to nearest multiple of 32} \\
+\times \quad 112.0 &amp; \text{100 rounded up to nearest multiple of 16} \\
+\times \qquad 1.5 &amp; \text{bytes of data per pixel in YUV420 format} \\
+\hline
+21504.0 &amp; \text{bytes total}\\
+\end{array}
+\end{equation}\]
+
+<p>The first 14336 bytes of the data (128*112) will be Y values, the next 3584 bytes (128 \times 112 \div 4) will be U values, and the final 3584 bytes will be the V values.</p>
+
+<h4 id="todo">TODO:</h4>
+
+<ul>
+  <li>write a Julia program that recovers the <code class="language-plaintext highlighter-rouge">RGB</code> data from the <code class="language-plaintext highlighter-rouge">YUV</code> mode and displays the RGB image.</li>
+</ul>
+
+  </div><a class="u-url" href="/jekyll/update/2021/12/09/TP01.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Traitement d&#39;image numerique</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Traitement d&#39;image numerique</li><li><a class="u-email" href="mailto:hicham.belkebir@usmba.ac.ma">hicham.belkebir@usmba.ac.ma</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://www.facebook.com/hicham+belkebir"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#facebook"></use></svg> <span class="username">hicham belkebir</span></a></li><li><a href="https://github.com/bhic1973"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">bhic1973</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Cette page contient le descriptif des Travaux pratiques du traitement d&#39;image au profit des etudiants de la filiere Genie systeme embarquee et informatique industrielle semestre 5.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
