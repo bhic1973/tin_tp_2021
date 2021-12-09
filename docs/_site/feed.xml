@@ -1,4 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/tin_tp_2021/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/tin_tp_2021/" rel="alternate" type="text/html" /><updated>2021-12-10T00:42:59+01:00</updated><id>http://localhost:4000/tin_tp_2021/feed.xml</id><title type="html">Traitement d’image numerique</title><subtitle>Cette page contient le descriptif des Travaux pratiques du traitement d'image au profit des etudiants de la filiere Genie systeme embarquee et informatique industrielle semestre 5.</subtitle><entry><title type="html">Enonce TP01</title><link href="http://localhost:4000/tin_tp_2021/jekyll/update/2021/12/09/TP01.html" rel="alternate" type="text/html" title="Enonce TP01" /><published>2021-12-09T00:00:00+01:00</published><updated>2021-12-09T00:00:00+01:00</updated><id>http://localhost:4000/tin_tp_2021/jekyll/update/2021/12/09/TP01</id><content type="html" xml:base="http://localhost:4000/tin_tp_2021/jekyll/update/2021/12/09/TP01.html">&lt;style type=&quot;text/css&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/tin_tp_2021/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/tin_tp_2021/" rel="alternate" type="text/html" /><updated>2021-12-10T00:46:01+01:00</updated><id>http://localhost:4000/tin_tp_2021/feed.xml</id><title type="html">Traitement d’image numerique</title><subtitle>Cette page contient le descriptif des Travaux pratiques du traitement d'image au profit des etudiants de la filiere Genie systeme embarquee et informatique industrielle semestre 5.</subtitle><entry><title type="html">Enonce TP01</title><link href="http://localhost:4000/tin_tp_2021/jekyll/update/2021/12/09/TP01.html" rel="alternate" type="text/html" title="Enonce TP01" /><published>2021-12-09T00:00:00+01:00</published><updated>2021-12-09T00:00:00+01:00</updated><id>http://localhost:4000/tin_tp_2021/jekyll/update/2021/12/09/TP01</id><content type="html" xml:base="http://localhost:4000/tin_tp_2021/jekyll/update/2021/12/09/TP01.html">&lt;p&gt;«««&amp;lt; HEAD&lt;/p&gt;
+
+&lt;p&gt;=======&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;blockquote&gt;
+    &lt;blockquote&gt;
+      &lt;blockquote&gt;
+        &lt;blockquote&gt;
+          &lt;blockquote&gt;
+            &lt;blockquote&gt;
+              &lt;p&gt;9b0aae67dc80231b9efb67ab47f8dfa5ae1786f0&lt;/p&gt;
+            &lt;/blockquote&gt;
+          &lt;/blockquote&gt;
+        &lt;/blockquote&gt;
+      &lt;/blockquote&gt;
+    &lt;/blockquote&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;style type=&quot;text/css&quot;&gt;
 .divcls {
 	padding: 1% 5% 1% 5%;
 	width: 100%;
@@ -175,7 +193,7 @@ end
 
 &lt;ul&gt;
   &lt;li&gt;write a Julia program that recovers the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RGB&lt;/code&gt; data from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YUV&lt;/code&gt; mode and displays the RGB image.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"></summary></entry><entry><title type="html">Bien venu</title><link href="http://localhost:4000/tin_tp_2021/jekyll/update/2021/12/09/bien-venu.html" rel="alternate" type="text/html" title="Bien venu" /><published>2021-12-09T00:00:00+01:00</published><updated>2021-12-09T00:00:00+01:00</updated><id>http://localhost:4000/tin_tp_2021/jekyll/update/2021/12/09/bien-venu</id><content type="html" xml:base="http://localhost:4000/tin_tp_2021/jekyll/update/2021/12/09/bien-venu.html">&lt;p&gt;Ces pages sont reserves aux travaux pratiques du traitement d’image numerique destinees pour les etudiants du semestre 5 de la filiere genie des systemes embarques et informatique industrielle.&lt;/p&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html">«««&amp;lt; HEAD</summary></entry><entry><title type="html">Bien venu</title><link href="http://localhost:4000/tin_tp_2021/jekyll/update/2021/12/09/bien-venu.html" rel="alternate" type="text/html" title="Bien venu" /><published>2021-12-09T00:00:00+01:00</published><updated>2021-12-09T00:00:00+01:00</updated><id>http://localhost:4000/tin_tp_2021/jekyll/update/2021/12/09/bien-venu</id><content type="html" xml:base="http://localhost:4000/tin_tp_2021/jekyll/update/2021/12/09/bien-venu.html">&lt;p&gt;Ces pages sont reserves aux travaux pratiques du traitement d’image numerique destinees pour les etudiants du semestre 5 de la filiere genie des systemes embarques et informatique industrielle.&lt;/p&gt;
 
 &lt;p&gt;Le TP se deroule en deux seances et vise a familiariser l’etudiant a manipuler le module camera d’un systeme embarquee en bas-niveau.&lt;/p&gt;
 
