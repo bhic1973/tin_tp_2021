@@ -4,7 +4,7 @@ title: A propos
 permalink: /about/
 ---
 
-Le cours de traitement d'image numerique comportait les elements suivants:
+Le cours de traitement d'image numerique comporte les elements suivants:
 
 1. Elements de modelisation.
 
